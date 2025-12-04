@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Opt-Out Command Center</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Neutral color scheme and button style */
+  :root {
+    --bg-color: #f4f7f9;
+    --card-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #6c757d; /* Neutral gray for buttons */
+    --accent-hover: #5a646d;
+  }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .card {
+    background-color: var(--card-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    gap: 0.5rem;
+    transition: background-color 0.15s ease-in-out;
+  }
+  .btn:hover {
+    background-color: var(--accent-hover);
+  }
+  .btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="max-w-4xl mx-auto p-6">
+
+  <header class="text-center mb-8">
+    <h1 class="text-4xl font-bold mb-4">Opt-Out Command Center</h1>
+    <img src="https://github.com/TheTechDad1027/Opt-Out_Command_Center/blob/main/Logo.png?raw=true" 
+         class="mx-auto rounded-xl shadow-lg w-80 max-w-full" 
+         alt="Opt-Out Command Center graphic" />
+  </header>
+
+  <p class="text-lg mb-6">
+    In a world where personal data is widely spread online, the Opt-Out Command Center gives you a single place to manage your privacy. 
+    It helps you find and use opt-out options to remove your information from various online services and integrates with Outlook to let you 
+    quickly identify and unsubscribe from bulk or unwanted emails.
+  </p>
+
+  <section class="card">
+    <h2 class="text-2xl font-semibold mb-2">How It Works</h2>
+    <ol class="list-decimal ml-6 space-y-1">
+      <li>Discover opt-out or data removal paths for common online services.</li>
+      <li>Open opt-out pages directly from the dashboard to submit removal or preference requests.</li>
+      <li>
+        Connect to Outlook so the tool can scan your inbox for unsubscribe options by:
+        <ul class="list-disc ml-6 mt-1">
+          <li>Detecting <code>List-Unsubscribe</code> headers commonly used in bulk or marketing mail.</li>
+          <li>Searching for keywords like <code>"unsubscribe"</code> or <code>"manage your subscription"</code> in the message body.</li>
+          <li>Looking for bulk-delivery indicators in headers (for example, flags that show an email was sent to a mailing list).</li>
+        </ul>
+      </li>
+      <li>Use those signals to quickly unsubscribe from newsletters and other unwanted messages.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2 class="text-2xl font-semibold mb-2">Why It Matters</h2>
+    <p class="mb-2">
+      Your privacy is important. Over time, your information can end up scattered across data brokers, marketing systems, and mailing lists. 
+      Opt-Out Command Center helps you take back control by bringing opt-out options and inbox cleanup tools into one place.
+    </p>
+    <p class="text-sm text-gray-600">
+      The tool is designed to speed up your privacy and inbox cleanup workflow, but it cannot guarantee full data removal or the complete end of spam. 
+      It is a helper to make manual and semi-automated privacy actions faster and easier.
+    </p>
+  </section>
+
+<div class="flex justify-center gap-4 mt-8">
+  <a href="#" class="btn">
+    <img src="https://avatars.githubusercontent.com/u/185084551?v=4" alt="Buy Me a Coffee" />
+    Buy Me a Coffee
+  </a>
+  <a href="#" class="btn">View Project Repo</a>
+</div>
+
+
+
+  <p class="text-center mt-10 text-sm text-gray-600">
+    Built inside The TechDad1027 ecosystem — always evolving, always building
+  </p>
+
+</div>
+</body>
+</html>

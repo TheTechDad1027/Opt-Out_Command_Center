@@ -1,14 +1,80 @@
-In a world where personal data is widely spread online, the Opt-Out Command Center gives you a single place to manage your privacy. It helps you find and use opt-out options to remove your information from various online services and integrates with Outlook to let you quickly identify and unsubscribe from bulk or unwanted emails.
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Opt-Out Command Center</h1>
+        <p class="subtitle">A simple dashboard to manage data-broker opt-outs and reduce your digital footprint.</p>
+      </div>
+    </header>
+<section>
+      <h2>Overview</h2>
+      <p>
+        Opt-Out Command Center puts your data-broker removal tasks in one place. It helps you see which brokers you’ve
+        contacted, which ones still need attention, and opens the right opt-out pages with a single click.
+      </p>
+    </section>
+      <section>
+      <h2>Main Features</h2>
+      <ul>
+        <li>List of data brokers with per-broker status (Not started, In progress, Done).</li>
+        <li>One-click launch to real opt-out forms and privacy pages.</li>
+        <li>Optional Outlook-based helper for spotting unsubscribe opportunities.</li>
+        <li>Lightweight pop-out view so you can keep the dashboard visible while browsing.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Overview</h2>
+      <p>
+        Opt-Out Command Center puts your data-broker removal tasks in one place. It helps you see which brokers you’ve
+        contacted, which ones still need attention, and opens the right opt-out pages with a single click.
+      </p>
+    </section>
+        <section>
+      <h2>How It Works</h2>
+      <ul>
+        <li>Load or edit your broker list (CSV).</li>
+        <li>Open each broker’s opt-out page from the app.</li>
+        <li>Update the status after you complete a request.</li>
+        <li>Repeat over time as new brokers are added or found.</li>
+      </ul>
+    </section>
+        <section>
+      <h2>Disclaimer & License</h2>
+      <div class="disclaimer">
+This tool does not guarantee data removal or a reduction in spam.
 
-How It Works
-Discover opt-out or data removal paths for common online services.
-Open opt-out pages directly from the dashboard to submit removal or preference requests.
-Connect to Outlook so the tool can scan your inbox for unsubscribe options by:
-Detecting List-Unsubscribe headers commonly used in bulk or marketing mail.
-Searching for keywords like "unsubscribe" or "manage your subscription" in the message body.
-Looking for bulk-delivery indicators in headers (for example, flags that show an email was sent to a mailing list).
-Use those signals to quickly unsubscribe from newsletters and other unwanted messages.
-Why It Matters
-Your privacy is important. Over time, your information can end up scattered across data brokers, marketing systems, and mailing lists. Opt-Out Command Center helps you take back control by bringing opt-out options and inbox cleanup tools into one place.
+Data brokers can change their processes, decline removal requests,
+or require extra verification. Always confirm results directly on
+each site.
 
-The tool is designed to speed up your privacy and inbox cleanup workflow, but it cannot guarantee full data removal or the complete end of spam. It is a helper to make manual and semi-automated privacy actions faster and easier.
+This software is provided AS-IS, without warranty of any kind.
+Use at your own risk.
+      </div>
+    </section>
+        <div class="footer">
+      <div>Built by TheTechDad1027</div>
+      <a class="coffee" href="#" target="_blank">☕ Buy Me a Coffee</a>
+    </div>
+
+
+  </main>
+  
+
+   
+
+
+    
+
+
+ 
+
+
+
+
+
+
+</body>
+</html>

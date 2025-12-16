@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opt-Out Command Center — The TechDad1027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-elevated: #0b1020;
+      --bg-softer: #101525;
+      --accent: #ffd15c;
+      --accent-soft: rgba(255, 209, 92, 0.14);
+      --accent-strong: #ffb02e;
+      --accent-alt: #4bc0ff;
+      --text-main: #f7f7ff;
+      --text-muted: #b2b7d9;
+      --text-soft: #8b91b8;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --nav-height: 70px;
+      --content-width: 1200px;
+      --transition-fast: 0.15s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #1b2954 0, #050814 52%, #020308 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 20px clamp(16px, 5vw, 40px) 48px;
+    }
+
+    /* NAV / HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(5, 8, 20, 0.97), rgba(5, 8, 20, 0.92) 70%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .nav {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px clamp(16px, 5vw, 40px) 10px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      white-space: nowrap;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 2px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      color: var(--text-soft);
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-links a[data-active="true"] {
+      background: radial-gradient(circle at top, var(--accent-strong), var(--accent));
+      color: #1a1307;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      background: rgba(148, 163, 184, 0.25);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chip {
+      border-radius: var(--radius-pill);
+      padding: 5px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.24), rgba(15, 23, 42, 0.9));
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      flex: 1 1 260px;
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at 15% 0, #fff7e5 0, var(--accent) 32%, var(--accent-strong) 100%);
+      color: #181118;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.75);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary span.icon {
+      font-size: 16px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) translateZ(0);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .btn-ghost {
+      flex: 1 1 260px;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-soft);
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-ghost span.icon {
+      font-size: 14px;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(30, 64, 175, 0.8);
+      border-color: rgba(191, 219, 254, 0.7);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .hero-subtitle strong {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .hero {
+      margin-top: 26px;
+      display: block;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.08), transparent 58%),
+                  linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 24px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-pill {
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--accent-alt);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 26px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-title span.emphasis {
+      background: linear-gradient(120deg, #fbbf24, #f97316, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 960px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      padding-left: 18px;
+      text-indent: 0;
+    }
+
+    .hero-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 12px;
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-muted);
+    }
+
+    .meta-item span.icon {
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .hero-footnote {
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-footnote strong {
+      color: var(--accent-alt);
+      font-weight: 600;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-panel {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.05), transparent 70%),
+                  linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.92));
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .hero-panel-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-soft);
+    }
+
+    .hero-panel-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(8, 47, 73, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      color: #e0f2fe;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .stat-card {
+      padding: 10px 10px 8px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.18), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .stat-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .hero-panel-footer {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-panel-footer span.key {
+      color: var(--accent-alt);
+      font-weight: 500;
+    }
+
+    .hero-panel-footer button {
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-muted);
+      font-size: 11px;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .hero-panel-footer button:hover {
+      background: rgba(30, 64, 175, 0.85);
+      border-color: rgba(191, 219, 254, 0.9);
+      transform: translateY(-1px);
+      color: var(--text-main);
+    }
+
+    .hero-panel-footer button span.icon {
+      font-size: 14px;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .timeline-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 3px;
+      background: radial-gradient(circle at center, #facc15 0, #f97316 50%, #450a0a 100%);
+    }
+
+    .timeline-body strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* MAIN CONTENT LAYOUT */
+    main {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .section {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-soft);
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* FILTER BAR (unused right now but kept for layout consistency) */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 11px;
+    }
+
+    .filter-pill {
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .filter-pill[data-selected="true"] {
+      background: radial-gradient(circle at top, rgba(251, 191, 36, 0.18), rgba(15, 23, 42, 0.95));
+      border-color: rgba(251, 191, 36, 0.9);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .filter-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    .filter-pill[data-selected="true"] span.dot {
+      background: var(--accent);
+    }
+
+    .filter-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      flex: 1 1 120px;
+      max-width: 240px;
+    }
+
+    .filter-search input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 12px;
+    }
+
+    .filter-search input::placeholder {
+      color: var(--text-soft);
+    }
+
+    /* PROJECT GRID */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.22), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 12px 12px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px) translateZ(0);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.85);
+      border-color: rgba(251, 191, 36, 0.9);
+      background: radial-gradient(circle at top, rgba(251, 191, 36, 0.2), rgba(15, 23, 42, 0.98));
+    }
+
+    .project-tagline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-type {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .project-status {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(52, 211, 153, 0.7);
+      background: rgba(6, 78, 59, 0.8);
+      color: #a7f3d0;
+      white-space: nowrap;
+    }
+
+    .project-status[data-status="beta"] {
+      border-color: rgba(251, 191, 36, 0.9);
+      background: rgba(120, 53, 15, 0.9);
+      color: #fed7aa;
+    }
+
+    .project-status[data-status="idea"] {
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+    }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .project-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      min-height: 34px;
+    }
+
+    .project-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      gap: 8px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .project-tag {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 10px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--accent-alt);
+    }
+
+    .project-link span.icon {
+      font-size: 13px;
+    }
+
+    .project-footer {
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 10px;
+      color: var(--text-soft);
+    }
+
+    .project-footer span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* CONNECT SECTION */
+    .connect-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 11px;
+    }
+
+    .connect-pill {
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .connect-pill span.icon {
+      font-size: 14px;
+    }
+
+    .connect-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .connect-link {
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.2), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .connect-link span.label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .connect-link span.label span.icon {
+      font-size: 15px;
+    }
+
+    .connect-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.9);
+      border-color: rgba(251, 191, 36, 0.9);
+      background: radial-gradient(circle at top, rgba(251, 191, 36, 0.16), rgba(15, 23, 42, 0.96));
+    }
+
+    .connect-footnote {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 11px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent-alt);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+      }
+      .nav-cta {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .page-shell {
+        padding-inline: 16px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero-left {
+        padding: 18px 16px 16px;
+      }
+      .section {
+        padding-inline: 14px;
+      }
+      .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-mark" aria-hidden="true">
+          <img src="https://github.com/TheTechDad1027/Opt-Out_Command_Center/blob/main/Logo.png?raw=true" alt="Opt-Out Command Center Logo" />
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Opt-Out Command Center</div>
+          <div class="brand-tagline">A tool by The Techdad1027</div>
+        </div>
+      </div>
+
+      <div class="nav-cta">
+        <div class="chip">Privacy cleanup dashboard</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="hero-pill-row">
+          <div class="hero-pill">
+            <span class="dot"></span>
+            Data broker &amp; spam control
+          </div>
+          <div class="hero-pill">
+            🧹 Opt-outs · unsubscribe · tracking
+          </div>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">
+          Track your privacy, opt-outs and spam cleanups.
+        </h1>
+
+        <p class="hero-subtitle">
+          Opt-Out Command Center is meant to be your control panel for cleaning up data that&apos;s already out in the wild. 
+          Instead of scattered spreadsheets, random bookmarks, and half-remembered unsubscribe clicks, everything lands in one 
+          structured view: data brokers, marketing lists, privacy requests, email senders, and their current status. You can log 
+          when you requested removal, how you contacted them, what personal info was shared, and what you want them to do with it. 
+          Over time, it becomes a simple way to see who still has your data, who responded, and where the remaining “leaks” might be.
+        </p>
+
+        <p class="hero-subtitle" style="margin-top:12px; font-weight:600;">Key Features</p>
+        <ul class="hero-subtitle" style="margin-left:18px; margin-bottom:16px; list-style:disc; font-size:12px; color:var(--text-muted);">
+          <li><strong>Broker &amp; Sender Catalog</strong> — keep a list of data brokers, marketing lists, and problem senders in one place.</li>
+          <li><strong>Opt-Out Status Tracking</strong> — log requests as Pending, Completed, Ignored, or Needs Follow-up.</li>
+          <li><strong>Multiple Profiles</strong> — track requests for yourself, family members, or aliases in separate profiles.</li>
+          <li><strong>Contact Methods</strong> — record how you opted out (form, email, portal, mail) and keep notes or confirmation details.</li>
+          <li><strong>Quick Links</strong> — jump directly to each broker&apos;s opt-out or privacy page from the dashboard.</li>
+          <li><strong>Email / Spam Helper</strong> — note which senders you unsubscribed from so you can see who respects it and who doesn&apos;t.</li>
+          <li><strong>Local Files</strong> — store everything in simple CSV/JSON files that you control on your machine.</li>
+        </ul>
+
+        <div class="hero-footnote" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <!-- 
+          <span><strong>Fully local:</strong> Windows desktop tool, no cloud account required &mdash; your data stays in your files.</span>
+ --><span></span>
+          <a href="https://github.com/TheTechDad1027/Opt-Out_Command_Center/raw/refs/heads/main/Opt-Out_Command_Center.exe" target="_blank"
+             class="btn-primary"
+             style="text-decoration:none; padding:8px 14px; font-size:11px; flex:0 0 16%; min-width:140px; display:inline-flex; align-items:center; gap:8px;">
+            <span class="icon">⬇️</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <!-- OVERVIEW -->
+      <section class="section" id="projects" style="grid-column: 1 / -1;" aria-labelledby="projects-title">
+        <div class="section-header">
+          <h2 id="projects-title" class="section-title">Opt-Out Command Center Overview</h2>
+          <p class="section-subtitle">What it helps you keep an eye on at a glance.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <header class="project-tagline-row">
+              <span class="project-type">Data brokers</span>
+              <span class="project-status" data-status="live">Privacy requests</span>
+            </header>
+            <div class="project-title">Who Has Your Data</div>
+            <div class="project-subtitle">
+              Keep a running list of each data broker or site, what categories of data they hold, and where you are in the opt-out process.
+            </div>
+            <div class="project-meta-row">
+              <div class="project-tags">
+                <span class="project-tag">Broker list</span>
+                <span class="project-tag">Opt-out log</span>
+              </div>
+              <span class="project-link"><span>Jump to opt-out page</span><span class="icon">↗</span></span>
+            </div>
+            <div class="project-footer">
+              <span class="label">View</span>
+              <span>Pending vs. completed requests at a glance</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <header class="project-tagline-row">
+              <span class="project-type">Inbox cleanup</span>
+              <span class="project-status" data-status="beta">Marketing &amp; spam</span>
+            </header>
+            <div class="project-title">Email &amp; Unsubscribe Tracker</div>
+            <div class="project-subtitle">
+              Track which senders you unsubscribed from and how they responded, so you can spot repeat offenders and take further action.
+            </div>
+            <div class="project-meta-row">
+              <div class="project-tags">
+                <span class="project-tag">Marketing emails</span>
+                <span class="project-tag">Spam sources</span>
+              </div>
+              <span class="project-link"><span>Mark as stopped</span><span class="icon">✔</span></span>
+            </div>
+            <div class="project-footer">
+              <span class="label">Status</span>
+              <span>Still sending · Slowed down · Fully stopped</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <header class="project-tagline-row">
+              <span class="project-type">At-a-glance</span>
+              <span class="project-status" data-status="live">Privacy summary</span>
+            </header>
+            <div class="project-title">Privacy Progress Snapshot</div>
+            <div class="project-subtitle">
+              See how many brokers you&apos;ve contacted, how many have removed data, and where follow-up is overdue, all in one view.
+            </div>
+            <div class="project-meta-row">
+              <div class="project-tags">
+                <span class="project-tag">Totals</span>
+                <span class="project-tag">Follow-up queue</span>
+              </div>
+              <span class="project-link"><span>Review current risk</span><span class="icon">📊</span></span>
+            </div>
+            <div class="project-footer">
+              <span class="label">Best use</span>
+              <span>Monthly privacy check-in or cleanup session</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="project-footer" style="margin-top: 10px; font-size: 11px; color: var(--text-soft);">
+          <span class="label">Tip</span>
+          <span>Use Opt-Out Command Center alongside your email rules and browser tools: one place to log actions, many ways to reduce how your data is used.</span>
+        </div>
+      </section>
+
+      <!-- CONNECT & FEEDBACK -->
+      <section class="section" id="connect" style="grid-column: 1 / -1;" aria-labelledby="connect-title">
+        <div class="section-header">
+          <h2 id="connect-title" class="section-title">Connect &amp; Feedback</h2>
+          <p class="section-subtitle">Where to find me, see other tools, and support future work.</p>
+        </div>
+
+        <div class="connect-links">
+          <a class="connect-link" href="https://thetechdad1027.github.io/TheTechDad1027/" rel="noopener noreferrer">
+            <span class="label">
+              <span class="icon">🐙</span>
+              <span>The Techdad1027</span>
+            </span>
+            <span>New &amp; old releases →</span>
+          </a>
+
+          <a class="connect-link" href="https://www.buymeacoffee.com/thetechdad1027" rel="noopener noreferrer">
+            <span class="label">
+              <span class="icon">☕</span>
+              <span>Buy Me a Coffee</span>
+            </span>
+            <span>Support future tools →</span>
+          </a>
+
+          <a class="connect-link" href="mailto:thetechdad1027@gmail.com?subject=Opt-Out%20Command%20Center%20idea%20or%20feedback" rel="noopener noreferrer">
+            <span class="label">
+              <span class="icon">📬</span>
+              <span>Please email me</span>
+            </span>
+            <span>Say hello →</span>
+          </a>
+        </div>
+
+        <p class="connect-footnote" style="margin-top:10px; font-size:11px; color:var(--text-soft);">
+          ⚠️ This tool is provided strictly as-is, with no guarantees that any opt-out or removal request will be accepted or reduce spam. 
+          It&apos;s designed to help you stay organized while you use real, third-party websites and services that you control. 
+          Always double-check instructions, requirements, and results directly with each provider, and use your own judgment when sharing personal information.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; <span id="year"></span> The TechDad1027 · Opt-Out Command Center is part of my personal privacy &amp; automation toolkit.
+        Built with static HTML, a little JavaScript, and a lot of coffee.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const yearEl = document.getElementById('year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+</body>
+</html>
